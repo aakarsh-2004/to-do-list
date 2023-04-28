@@ -9,17 +9,20 @@
 </head>
 <body>
     <div class="container">
-    <h1> <%= kindOfDay  %></h1>
+    <h1> <%= listTitle  %></h1>
 
     <ul>
         <% for(let i = 0; i < newListItem.length; i++) { %>
-            <li><%= newListItem[i] %></li>
+            <div class="list-item">
+                <input type="checkbox" class="check" autocomplete="off">
+                <li><%= newListItem[i] %></li>
+            </div>
         <% } %>
     </ul>
 
     <form action="/" method="post">
         <input type="text" name="task" placeholder="Enter new task" autofocus>
-        <button type="submit" name="button">Add</button>
+        <button type="submit" name="list" value="<%= listTitle %>">Add</button>
     </form>
 </div>
 </body>

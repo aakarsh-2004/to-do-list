@@ -40,3 +40,15 @@ button:hover {
 input::placeholder {
     font-size: 1.15rem;
 }
+
+.list-item {
+    display: flex;
+}
+
+.check {
+    height: 25px;
+    width: 30px;
+}
+input:checked + li {
+    text-decoration: line-through;
+}
