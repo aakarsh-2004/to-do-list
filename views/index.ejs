@@ -11,14 +11,15 @@
     <div class="container">
     <h1> <%= listTitle  %></h1>
 
-    <ul>
-        <% for(let i = 0; i < newListItem.length; i++) { %>
-            <div class="list-item">
-                <input type="checkbox" class="check" autocomplete="off">
-                <li><%= newListItem[i].task %></li>
-            </div>
-        <% } %>
-    </ul>
+    <ul><% newListItem.forEach((item) => { %>
+            <form action="/delete" method="post">
+                <div class="list-item">
+                    <input type="checkbox" class="check" 
+                    onChange = "this.form.submit()" name="checkbox" value="<%=item.task %>">
+                    <li><%= item.task %></li>
+                </div>
+            </form>
+        <% }) %>
 
     <form action="/" method="post">
         <input type="text" name="task" placeholder="Enter new task" autofocus>
