@@ -42,18 +42,18 @@ app.get('/', (req, res) => {
     })
 });
 
-// app.get("/:customListName", (req, res) => {
+// app.get("/my/:customListName", (req, res) => {
 //     const topic = req.params.customListName;
-//     // const newTopic = new Topic({name: topic, items:     databaseList});
-//     // newTopic.save();
+//     const newTopic = new Topic({name: topic, items: databaseList});
+//     newTopic.save();
 //     Topic.find({name: topic}).exec().then( (ele) => {
 //         if (topic === ele.name) {
 //             res.render("index", {listTitle : topic, newListItem:
 //             databaseList})
 //         } else {
-//             const newTopic = new Topic({name: topic, items:     databaseList});
+//             const newTopic = new Topic({name: topic, items: databaseList});
 //             newTopic.save();
-//             res.redirect("/" + topic);
+//             res.redirect("/my/" + topic);
 //         }
 //     });
 // });
@@ -63,9 +63,13 @@ app.post('/delete', (req, res) => {
     Task.deleteOne({task: checkedItemId}).then((e) => {
         console.log(e);
     });
-    databaseList.filter(element => {
-        element.task !== checkedItemId
-    })
+    for(let i = 0; i < databaseList.length; i++) {
+        if(databaseList[i].task === checkedItemId) {
+            databaseList.splice(i, 1);
+        } else {
+            console.log("Not found!");
+        }
+    }
     res.redirect("/");
 });
 
